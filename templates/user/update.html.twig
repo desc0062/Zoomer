@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}
+Édition de vos informations
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <h1>Édition de vos informations</h1>
+
+    {{ form_start(form, {'attr' : {'class': 'container-lg'}})}}
+        <h2>Identifiants</h2>
+        {{ form_row(form.email, {'label': 'Email'}) }}
+        {{ form_row(form.password, {'label': 'Mot de passe'}) }}
+        {{ form_row(form.firstName, {'label': false, 'attr':{'hidden':true}}) }}
+        {{ form_row(form.lastName, {'label': false, 'attr':{'hidden':true}}) }}
+        <input type="submit" class="btn btn-success w-100" value="Enregistrer" />
+    {{ form_end(form) }}
+    {{ form_start(form2, {'attr' : {'class': 'container-lg'}})}}
+        <h2>Informations complémentaires</h2>
+        {{ form_row(form2.firstName, {'label': 'Prénom'}) }}
+        {{ form_row(form2.lastName, {'label': 'Nom'}) }}
+        {{ form_row(form2.email, {'label': false, 'attr':{'hidden':true}}) }}
+        {{ form_row(form2.password, {'label': false, 'attr':{'value':app.user.password, 'hidden':true}}) }}
+        <input type="submit" class="btn btn-success w-100" value="Enregistrer" />
+    {{ form_end(form2) }}
+{% endblock %}
+

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket {{ticket.title}}{% endblock %}
+
+{% block stylesheets %}
+
+body {
+    margin-top:20px;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 800px;
+    overflow-y: scroll
+}
+
+h2 {
+    margin-left: 20%;
+}
+
+.chat-message-left,
+.chat-message-right {
+    display: flex;
+    flex-shrink: 0
+}
+
+.chat-message-left {
+    margin-right: auto
+}
+
+.chat-message-right {
+    flex-direction: row-reverse;
+    margin-left: auto
+}
+.py-3 {
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+}
+.px-4 {
+    padding-right: 1.5rem!important;
+    padding-left: 1.5rem!important;
+}
+.flex-grow-0 {
+    flex-grow: 0!important;
+}
+.border-top {
+    border-top: 1px solid #dee2e6!important;
+}
+
+{% endblock %}
+
+{% block body %}
+    <main class="content">
+        {% if (app.user.id == ticket.userConcerned.id) or ('ROLE_ADMIN' in app.user.getRoles() and (ticket.adminConcerned==app.user or ticket.adminConcerned==null)) %}
+            {% if 'ROLE_ADMIN' in app.user.getRoles() and (ticket.adminConcerned==null) %}
+                {{ form_start(attributionForm, {'attr':{'class':'ms-5'}}) }}
+                {{ form_row(attributionForm.accept, {'label':'Accepter le ticket', 'attr' : {'class' : 'btn btn-primary'}}) }}
+                {{ form_end(attributionForm) }}
+            {% endif %}
+            <h2>Traitement du ticket : {{ ticket.title }}</h2>
+            <h2>Status : {{ ticket.status }}</h2>
+            <h2>Ouvert par {{ ticket.userConcerned.lastName }} {{ ticket.userConcerned.firstName }} le {{ ticket.creationDate|date("d/m/Y") }}</h2>
+
+
+            <div class="container p-0">
+                <div class="card">
+                    <div class="position-relative">
+                        <div class="chat-messages p-5">
+                            {% for message in messages %}
+                                <div class="{% if 'ROLE_ADMIN' in app.user.getRoles() %}chat-message-right{% else %}chat-message-left{% endif %} pb-5">
+                                    <div>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Avatar" width="40" height="40">
+                                    </div>
+                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 {% if 'ROLE_ADMIN' in app.user.getRoles() %}mr-3{% else %}ml-3{% endif %}">
+                                        {% if message.ticket.adminConcerned == app.user %}
+                                        <div class="font-weight-bold mb-1">{{ message.ticket.adminConcerned.firstName|first|upper }}. {{ message.ticket.adminConcerned.lastName }}</div>
+                                        {% endif %}
+                                        {% if message.ticket.userConcerned == app.user %}
+                                            <div class="font-weight-bold mb-1">{{ message.ticket.userConcerned.firstName|first|upper }}. {{ message.ticket.userConcerned.lastName }}</div>
+                                        {% endif %}
+                                        {{ message.getContent() }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="flex-grow-0 py-3 px-4 border-top">
+                        <div class="input-group">
+                            {{ form_start(form, {'attr': {'class': 'w-100'}}) }}
+                            {{ form_row(form.content, {'label': false, 'attr':{'placeholder' : 'Entrez votre message', 'class': 'w-100'}}) }}
+                            {{ form_row(form.ticket, {'label':false, 'attr':{'hidden':true, 'value':ticket.id}}) }}
+                            <input type="submit" value="Envoyer" class="btn btn-primary">
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h2>Ce ticket n'est pas à vous.</h2>
+        {% endif %}
+    </main>
+{% endblock %}

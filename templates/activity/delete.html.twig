@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Suppression de {{ activity.name }}
+{% endblock %}
+
+{% block body %}
+<h1>Suppression de {{ activity.name }}</h1>
+
+    {{ form_start(formDelete, {'attr': {'class': 'd-flex'}}) }}
+    {{ form_widget(formDelete.delete, {'label': 'Supprimer', 'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_widget(formDelete.cancel, {'label': 'Annuler', 'attr': {'class': 'btn btn-secondary'}}) }}
+    {{ form_end(formDelete) }}
+{% endblock %}
+

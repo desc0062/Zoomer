@@ -1,0 +1,122 @@
+.persona {
+    width: 40px;
+    height: auto;
+    margin: 5px;
+}
+
+.nb_place_activity {
+    align-items: center;
+    display: flex;
+    background-color: darkgray;
+    width: max-content;
+    border-radius: 5px;
+}
+
+.animal_activity {
+    align-items: center;
+    display: flex;
+    background-color: darkgray;
+    width: max-content;
+    border-radius: 5px;
+    padding: 5px 0 5px;
+}
+
+.nb_place {
+    background-color: lightgray;
+    border-radius: 15px;
+    width: 100%;
+    margin: 5px;
+    padding: 0 5px 0 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background-color: #b5f6b5;
+}
+
+.card-img-top {
+    display: none;
+}
+
+.card-text {
+    height: max-content;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.card-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-body {
+    height: 100%;
+    padding-bottom: 5px;
+}
+
+.text-bg {
+    color: black;
+    background-color: lightyellow;
+}
+
+.btn {
+    height: 50%;
+    background-color: darkgray;
+}
+
+@media only screen and (min-width: 687px) {
+
+    .card-img-top {
+        display: flex;
+        width: max-content;
+        height: max-content;
+    }
+
+    .card-text {
+        height: 55%;
+        overflow-x: clip;
+        overflow-y: auto;
+    }
+
+    .col-md-8 {
+        width: 60%;
+        max-height: 30vw;
+    }
+
+    .col-md-4 {
+        width: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .card-img-top {
+        display: flex;
+    }
+
+    .card-body {
+        width: auto;
+    }
+
+    .col-md-8 {
+        width: 50%;
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+}

@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zoomer-Accueil{% endblock %}
+{% block stylesheets %}
+    #carouselContainer {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    .carousel-item img {
+    width: 100%;
+    border-radius: 5px;
+    }
+
+    .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    }
+
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="carouselContainer" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assets/img/tigre_image.jpg" class="d-block w-100" alt="Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <a href=""><h5>Les tigres</h5></a>
+                    <p>Retrouvez les tigres, aussi sauvage que chaleureux, ils sauront vous surprendre.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="assets/img/panda_image.jpg" class="d-block w-100" alt="Image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <a href=""><h5>Les pandas</h5></a>
+                    <p>Non, ils ne font pas que dormir, ils mangent aussi, c'est épuisant !</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="assets/img/koala_image.jpg" class="d-block w-100" alt="Image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <a href=""><h5>Les koalas</h5></a>
+                    <p>Ils nous fascineront toujours, ces koalas.</p>
+                </div>
+            </div>
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselContainer" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselContainer" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+    <br>
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Bienvenue au Zoomer !</h1>
+                <p class="lead mb-0">Votre zoo vous accueille tous les jours de 9h à 21h !</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-12">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <a href="assets/img/welcome_zoomer.png"><img class="card-img-top" src="assets/img/welcome_zoomer.png" alt="..." /></a>
+                    <div class="card-body">
+                        <div class="small text-muted">1er Décembre 2024</div>
+                        <h2 class="card-title">Ouverture du Zoomer !</h2>
+                        <p class="card-text">Retrouvez à partir d'aujourd'hui notre zoo batisé ZOOMER, dans lequel vous pourrez observer de nombreuses espèces d'animaux !</p>
+                    </div>
+                </div>
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="assets/img/panda_roux.jpg" alt="..." /></a>
+                            <div class="card-body">
+                                <div class="small text-muted">8 Décembre 2023</div>
+                                <h2 class="card-title h4">Nouveau panda roux !</h2>
+                                <p class="card-text">Accueil d'un nouveau panda roux au sein de notre zoo !</p>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="assets/img/equipe_vetos.jpg" alt="..." /></a>
+                            <div class="card-body">
+                                <div class="small text-muted">10 Décembre 2023</div>
+                                <h2 class="card-title h4">Nouvelle équipe de vétérinaines en approche !</h2>
+                                <p class="card-text">Notre nouvelle équipe vétérinaire, constituée de 3 personnes, experte dans son domaine, permet un environnement quant à l'épanouissement de nos animaux dans leur habitat.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="assets/img/renard_blanc.jpg" alt="..." /></a>
+                            <div class="card-body">
+                                <div class="small text-muted">13 Décembre 2023</div>
+                                <h2 class="card-title h4">La neige s'invite au Zooomer !</h2>
+                                <p class="card-text">Depuis quelques jours, la neige fait son apparition au sein de notre zoo, neige qui en ravie plus d'un !</p>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="assets/img/vison_europe.jpg" alt="..." /></a>
+                            <div class="card-body">
+                                <div class="small text-muted">18 Décembre 2023</div>
+                                <h2 class="card-title h4">Espèce protégée : Le Vison d'Europe</h2>
+                                <p class="card-text">Sa population ayant diminuée de 90% en un siècle, le Vison d'Europe est classé « En danger critique » par l'UICN. Nous en accueillons près d'une demi-vingtaine au Zoomer et leur offrons un habitat confortable et spacieux !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myCarousel = new bootstrap.Carousel(document.getElementById('carouselContainer'), {
+                interval: 5000
+            });
+        });
+    </script>
+
+{% endblock %}

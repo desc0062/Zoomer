@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Votre réservation a bien été annulée.</h1>
+
+    <div class="boutons">
+        <a href="{{ path('app_activity') }}" class="btn btn-success">Revenir à la liste des activités</a>
+        <a href="{{ path('app_activity_show', {id: activity.id}) }}" class="btn btn-success">Revenir à la page de l'activité</a>
+    </div>
+</div>
+
+{% endblock %}

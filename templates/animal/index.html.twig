@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les animaux du zoo{% endblock %}
+
+{% block stylesheets %}
+    li.animal a {
+    background-color: #7AA95C;
+    color: #FFFFFF;
+    transition: font-size 0.5s ease;
+    transition: color 0.5s ease
+}
+
+    li.animal a:hover {
+    color: #E2E9C0;
+    font-size: 105%
+}
+{% endblock %}
+
+{% block body %}
+<div class="animaux">
+    <h1 class="ms-5 mb-5">Nos animaux</h1>
+    <ul class="list-unstyled d-flex flex-column ">
+        {% for animal in animals %}
+            <li class="animal border rounded mx-auto w-75 d-flex flex-column mb-5">
+                <a href="{{ path("app_animal_show", {'id': animal.id}) }}" class="text-decoration-none">
+                <h2 class="ms-3">{{ animal.name }}</h2>
+                    <p class="ms-5">
+                        Poids moyen : {{ animal.poids }} kg
+                    </p>
+                    <p class="ms-5">
+                        Taille moyenne : {{ animal.taille }} cm
+                    </p>
+                    <p class="ms-5">
+                        Habitat : {{ animal.habitat }}
+                    </p>
+                    <p class="ms-5">
+                        Espèce : {{ animal.espece }}
+                    </p>
+                    <p class="ms-5">
+                        Espérance de vie : {{ animal.esperanceVie }} ans
+                    </p>
+                    <p class="ms-5">
+                        Description : {{ animal.description }}
+                    </p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

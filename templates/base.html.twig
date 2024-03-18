@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta name="viewport" charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <style>
+            #mainNavigation a {
+                font-family: 'Cabin', sans-serif;
+                font-size:14px;
+                text-transform:uppercase;
+                letter-spacing:2px;
+                text-shadow:1px 1px 2px rgba(0,0,0,0.4);
+                color: #2d2b2b;
+                transition: font-size 0.5s ease;
+            }
+
+            #mainNavigation a:hover {
+                color: #001a4d;
+                font-size: 16px;
+            }
+
+            .dropdown-menu {
+                background:#03727d
+            }
+            a.dropdown-toggle {
+                color: #293564 !important
+            }
+            a.dropdown-item:hover {
+                color:#03727d !important
+            }
+            .nav-item a{
+                color:#dfdfdf;
+            }
+            .nav-item a:hover {
+                color:#fff
+            }
+            .invert {
+                width: 5%;
+                border-radius: 30px;
+                height: auto;
+            }
+            #mainNavigation {
+                z-index: 123;
+                padding-bottom: 80px;
+                background: -moz-linear-gradient(top, rgba(173, 98, 28, 0.8) 0%, rgba(51, 25, 0, 0) 100%);
+                background: -webkit-linear-gradient(top, rgba(178, 95, 16, 0.8) 0%, rgba(51, 25, 0, 0) 100%);
+                background: linear-gradient(to bottom, rgba(129, 78, 23, 0.8) 0%, rgba(51, 25, 0, 0) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#331900', endColorstr='#001933', GradientType=0);
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+            }
+
+            #navbarNavDropdown.collapsing .navbar-nav,
+            #navbarNavDropdown.show .navbar-nav {
+                background: #003366;
+                padding: 12px;
+            }
+
+            #navbarNavDropdown.collapsing .navbar-nav,
+            #navbarNavDropdown.show .navbar-nav{
+                background:#037582;
+                padding:12px;
+            }
+
+            .navbar-nav .nav-link {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .navbar-nav .nav-link::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: transparent;
+                transition: background 0.3s;
+            }
+
+            .navbar-nav .nav-link:hover::before,
+            .navbar-nav .nav-link:focus::before {
+                background: #007bff;
+            }
+            {% block stylesheets %}
+            {% endblock %}
+        </style>
+
+        {% block javascripts %}
+        {% endblock %}
+
+
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+        <div id="mainNavigation">
+            <header role="navigation">
+                <div class="py-3 text-center border-bottom">
+                    <a href="{{ path("app_home") }}"><img src="/assets/img/dark_logo_zoomer.png" alt="" class="invert"></a>
+                </div>
+            </header>
+            <nav class="container">
+                <div class="navbar-expand-md w-100 mx-auto">
+                    <div class="navbar-dark text-center my-2">
+                        <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span> <span class="align-middle">Menu</span>
+                        </button>
+                    </div>
+                    <div class="text-center mt-3 collapse navbar-collapse mx-auto" id="navbarNavDropdown">
+                        <ul class="navbar-nav mx-auto w-100">
+                            <li class="nav-item w-25">
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                            </li>
+                            <li class="nav-item w-25">
+                                <a class="nav-link" href=" {{ path('app_activity') }}">Nos activités</a>
+                            </li>
+                            <li class="nav-item w-25">
+                                <a class="nav-link" href="{{ path('app_animal') }}">Les animaux du zoo</a>
+                            <li class="nav-item dropdown w-25">
+                                <a class="nav-link dropdown-toggle" href="{{ path('app_user_account') }}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Compte
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                        <li><a class="dropdown-item" href="{{ path('app_user_account') }}">Mon compte</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_ticket_index') }}">Support</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <li><a class="dropdown-item" href="{{ path('admin') }}">Dashboard</a></li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li><a class="dropdown-item" href="{{ path('app_login') }}">Se connecter</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_register') }}">S'inscrire</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

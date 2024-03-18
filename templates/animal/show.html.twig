@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ animal.name }}{% endblock %}
+
+{% block body %}
+    <h1 class="ms-3">{{ animal.name }}</h1>
+    <div class="d-flex justify-content-center mb-3">
+        <div class="card border-black flex-row w-50">
+            {% if animal.imageAni is not null %}
+                <img src="/uploads/animals/{{ animal.imageAni }}" class="rounded-3 h-100 w-50">
+            {% else %}
+                <img src="https://i.imgur.com/KSV3BxD.jpeg" class="rounded-3 h-20 w-20">
+            {% endif %}
+            <div>
+                <p class="ms-3 mt-2">
+                    Poids moyen : {{ animal.poids }} kg
+                </p>
+                <p class="ms-3">
+                    Taille moyenne : {{ animal.taille }} cm
+                </p>
+                <p class="ms-3">
+                    Habitat : {{ animal.habitat }}
+                </p>
+                <p class="ms-3">
+                    Espèce : {{ animal.espece }}
+                </p>
+                <p class="ms-3">
+                    Espérance de vie : {{ animal.esperanceVie }} ans
+                </p>
+                <p class="ms-3 mb-2">
+                    Description : {{ animal.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="ms-3 mb-5">Activités liées à cet animal :</h1>
+    {% for activity in activities|batch(3, null) %}
+        <div class="d-flex justify-content-between">
+            {% for column in activity %}
+                {% if column.id is not null %}
+                    <a href="{{ path('app_activity_show', {id: column.id}) }}" class="btn d-flex flex-row w-25 border-black justify-content-around mb-4 ms-5 me-5">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                             alt="image 1" class="w-50 rounded-3">
+                        <div class="activity-info">
+                            <h2>{{ column.name }}</h2>
+                            <div class="activity-numbers">
+                                <div class="activity-date">Date : {{ column.dateAc }}</div>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}

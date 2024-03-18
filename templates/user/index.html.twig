@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <style>
+        .gradient-custom {
+            /* fallback for old browsers */
+            background: #f6d365;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+        }
+
+        .btn-custom {
+            color: #7e39f7; /* Couleur violette de base */
+            border-color: #7e39f7; /* Couleur violette de base pour la bordure */
+        }
+
+        .btn-custom:hover {
+            background-color: #b296f6; /* Couleur violette claire au survol */
+            color: #ffffff; /* Couleur du texte au survol */
+            border-color: #b296f6; /* Couleur de la bordure au survol */
+        }
+    </style>
+
+    <section class="h-100 gradient-custom-2">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100 w-75">
+                <div class="col col-lg-9 col-xl-7 w-100">
+                    <div class="card w-100">
+                        <div class="rounded-top text-white d-flex flex-row w-100 justify-content-around" style="background-color: #000; height:auto;">
+                            <div class="ms-4 mt-5 d-flex flex-column w-100 align-items-center">
+                                <div class="ms-5 w-75 mt-3 d-flex flex-row mb-3">
+                                    <img src="assets/img/avatar.png"
+                                         alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 w-25"
+                                         style="z-index: 1">
+                                    <div class="ms-3 mt-3 d-flex flex-column w-50">
+                                        <h5>{{ app.user.lastname }}</h5>
+                                        <p>{{ app.user.firstname }}</p>
+                                    </div>
+                                </div>
+                                <div class ="d-flex justify-content-around w-100 mb-4">
+                                    <a class="btn btn-outline-dark btn-custom w-25" data-mdb-ripple-color="dark" style="z-index: 1;" href="{{ path("app_user_update") }}">Modifier mes données</a>
+                                    <a class="btn btn-outline-dark btn-custom w-25" data-mdb-ripple-color="dark" style="z-index: 1;" href="{{ path("app_user_delete") }}">Supprimer mon compte</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 text-black">
+                            <div class="mb-5">
+                                <p class="lead fw-normal mb-1">Mes informations</p>
+                                <div class="p-4" style="background-color: #f8f9fa;">
+                                    <p class="font-italic mb-1">Prénom : <span style="color: #7e39f7">{{ app.user.firstname }}</span></p>
+                                    <p class="font-italic mb-1">Nom de famille : <span style="color: #7e39f7">{{ app.user.lastname }}</span> </p>
+                                    <p class="font-italic mb-1">Adresse email : <span style="color: #7e39f7">{{ app.user.email }}</span> </p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="lead fw-normal mb-0">Participations activités : </p>
+                            </div>
+                            {% for activity in activities|batch(2, null) %}
+                            <div class="row g-2">
+                                {% for column in activity %}
+                                    {% if column.id is not null %}
+                                <div class="col mb-2">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                                         alt="image 1" class="w-100 rounded-3">
+                                    <div>{{ column.actiname }}</div>
+                                    <a href="{{ path('app_activity_show', {id: column.id}) }}" class="btn">Détails</a>
+                                </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

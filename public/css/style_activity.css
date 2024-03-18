@@ -1,0 +1,23 @@
+.activity-info {
+    /*border: solid 1px black;
+
+     */
+}
+
+h1 {
+    margin: 10px;
+}
+
+.activity-info > * {
+    margin: 10px;
+}
+
+.activity-numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn {
+    margin: 10px;
+}
